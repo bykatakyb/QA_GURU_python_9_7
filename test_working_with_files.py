@@ -1,5 +1,6 @@
 import csv
 import os
+import shutil
 import zipfile
 from io import TextIOWrapper
 
@@ -24,8 +25,9 @@ def archive_files():
             add_file = os.path.join(path, file)
             zf.write(add_file, file)
     # AUTO DELETING ARCHIVE AFTER TEST
-    # yield
-    # os.remove(zip_path)
+    yield
+    os.remove(zip_path)
+    shutil.rmtree(resources)
 
 
 def test_archive_creating(archive_files):
